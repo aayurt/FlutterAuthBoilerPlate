@@ -8,8 +8,18 @@ import 'package:flutter_auth/components/rounded_button.dart';
 import 'package:flutter_auth/components/rounded_input_field.dart';
 import 'package:flutter_auth/components/rounded_password_field.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:http/http.dart' as http;
+
+const SERVER_IP = 'http://127.0.0.1:3001';
 
 class Body extends StatelessWidget {
+  Future<String> attemptLogIn(String username, String password) async {
+    var res = await http.post("$SERVER_IP/login",
+        body: {"username": username, "password": password});
+    if (res.statusCode == 200) return res.body;
+    return null;
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -29,14 +39,11 @@ class Body extends StatelessWidget {
             ),
             RoundedInputField(
               hintText: "Your Email",
-              onChanged: (value) {},
             ),
-            RoundedPasswordField(
-              onChanged: (value) {},
-            ),
+            RoundedPasswordField(),
             RoundedButton(
               text: "SIGNUP",
-              press: () {},
+              press: () async {},
             ),
             SizedBox(height: size.height * 0.03),
             AlreadyHaveAnAccountCheck(
