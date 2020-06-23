@@ -1,3 +1,4 @@
+import 'package:flutter_auth/Screens/About/about.dart';
 import 'package:flutter_auth/Screens/Dashboard.dart';
 import 'package:flutter_auth/Screens/Home/home.dart';
 import 'package:flutter_auth/Screens/Welcome/welcome_screen.dart';
@@ -35,6 +36,10 @@ Route<dynamic> generateRoute(RouteSettings settings) {
     case 'home':
       // var argument = settings.arguments;
       return MaterialPageRoute(builder: (context) => Home());
+      break;
+    case 'about':
+      // var argument = settings.arguments;
+      return MaterialPageRoute(builder: (context) => About());
       break;
     default:
       return MaterialPageRoute(builder: (context) => NoScreen());
