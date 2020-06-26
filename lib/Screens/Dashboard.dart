@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_auth/Routes/routes.dart' as router;
-import 'package:http/http.dart' as http;
 import 'dart:convert' show json, base64, ascii;
+import 'package:flutter_auth/Routes/routes.dart' as router;
 
 class Dashboard extends StatelessWidget {
   Dashboard(this.jwt, this.payload);
@@ -22,30 +21,4 @@ class Dashboard extends StatelessWidget {
       initialRoute: 'home',
     );
   }
-  // Widget build(BuildContext context) => Scaffold(
-  //       appBar: AppBar(title: Text("Secret Data Screen")),
-  //       body: Center(
-  //         child: FutureBuilder(
-  //             future: http.read('http://aayushshrestha.com:3001/api/data',
-  //                 headers: {"Authorization": jwt}),
-  //             builder: (context, snapshot) => snapshot.hasData
-  //                 ? Column(
-  //                     children: <Widget>[
-  //                       Text("${payload['username']}, here's the data:"),
-  //                     ],
-  //                   )
-  //                 : snapshot.hasError
-  //                     ? Text("An error occurred")
-  //                     : CircularProgressIndicator()),
-  //                 //     builder: (context, snapshot) => snapshot.hasData
-  //                 // ? Column(
-  //                 //     children: <Widget>[
-  //                 //       Text("${payload['username']}, here's the data:"),
-  //                 //     ],
-  //                 //   )
-  //                 // : snapshot.hasError
-  //                 //     ? Text("An error occurred")
-  //                 //     : CircularProgressIndicator()),
-  //       ),
-  //     );
 }

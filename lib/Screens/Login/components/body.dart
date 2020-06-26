@@ -1,19 +1,18 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_auth/Screens/Login/components/background.dart';
-import 'package:flutter_auth/Screens/Signup/components/body.dart';
 import 'package:flutter_auth/Screens/Signup/signup_screen.dart';
 import 'package:flutter_auth/components/already_have_an_account_acheck.dart';
 import 'package:flutter_auth/components/rounded_button.dart';
 import 'package:flutter_auth/components/rounded_input_field.dart';
 import 'package:flutter_auth/components/rounded_password_field.dart';
+import 'package:flutter_auth/constants.dart';
 import 'package:flutter_auth/main.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:http/http.dart' as http;
-import 'dart:convert';
 
 final storage = FlutterSecureStorage();
-const SERVER_IP = 'http://127.0.0.1:3001/';
 
 class Body extends StatefulWidget {
   @override
@@ -37,8 +36,10 @@ class _BodyState extends State<Body> {
     Size size = MediaQuery.of(context).size;
     Future<String> attemptLogIn(String username, String password) async {
       print("AAA");
-      var uri = Uri.parse("http://aayushshrestha.com:3001/api/users/login");
-      print("aa" + uri.host);
+      var uri = Uri.parse(base_url + '/users/login');
+      print("base_url " + base_url);
+
+      print("aa " + uri.host);
       print(uri.port);
       var res = await http.Client().post(
         uri,
@@ -56,8 +57,10 @@ class _BodyState extends State<Body> {
       if (data == "success") {
         var jwt = convertDataToJson['token'];
         if (jwt != null) {
+          //key is writen here and read in main
+          //if main have already JWT key goes to dashboard screen
           storage.write(key: "jwt", value: jwt);
-          Navigator.push(
+          Navigator.pushReplacement(
             context,
             MaterialPageRoute(builder: (context) => MyApp()),
           );

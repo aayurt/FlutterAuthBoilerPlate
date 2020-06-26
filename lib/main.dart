@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_auth/Screens/Dashboard.dart';
 import 'package:flutter_auth/Screens/Welcome/welcome_screen.dart';
-// import 'package:flutter_auth/Screens/Welcome/welcome_screen.dart';
 import 'package:flutter_auth/constants.dart';
 import 'Routes/routes.dart' as router;
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -22,13 +21,14 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Auth',
+      title: 'AAA app',
       theme: ThemeData(
         primaryColor: kPrimaryColor,
         scaffoldBackgroundColor: Colors.white,
       ),
       onGenerateRoute: router.generateRoute,
-      // initialRoute: 'home',
+      //Here the main is waiting for the future await AAA
+      //if authenticated(JWT KEY) moves to Dashboard where JWT key is checked again
       home: FutureBuilder(
           future: jwtOrEmpty,
           builder: (context, snapshot) {

@@ -1,4 +1,5 @@
 import 'package:flutter_auth/Screens/About/about.dart';
+import 'package:flutter_auth/Screens/Animate/animate.dart';
 import 'package:flutter_auth/Screens/Dashboard.dart';
 import 'package:flutter_auth/Screens/Home/home.dart';
 import 'package:flutter_auth/Screens/Welcome/welcome_screen.dart';
@@ -9,19 +10,17 @@ import 'package:flutter_auth/Screens/noScreen.dart';
 // import 'package:flutter_auth/Screens/undefinedView.dart';
 import 'package:flutter/material.dart';
 
-final storage = FlutterSecureStorage();
-Future<String> get jwtOrEmpty async {
-  var jwt = await storage.read(key: "jwt");
-  if (jwt == null) return "";
-  return jwt;
-}
-
 Route<dynamic> generateRoute(RouteSettings settings) {
   switch (settings.name) {
     case '/':
       var argument = settings.arguments;
       return MaterialPageRoute(
-          builder: (context) => WelcomeScreen(argument: argument));
+        builder: (
+          context,
+        ) =>
+            WelcomeScreen(argument: argument),
+      );
+
       break;
     case 'login':
       var argument = settings.arguments;
@@ -40,6 +39,10 @@ Route<dynamic> generateRoute(RouteSettings settings) {
     case 'about':
       // var argument = settings.arguments;
       return MaterialPageRoute(builder: (context) => About());
+      break;
+    case 'animate':
+      // var argument = settings.arguments;
+      return MaterialPageRoute(builder: (context) => NewAnimate());
       break;
     default:
       return MaterialPageRoute(builder: (context) => NoScreen());

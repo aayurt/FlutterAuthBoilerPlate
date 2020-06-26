@@ -24,19 +24,16 @@ class AppDrawer extends StatelessWidget {
           ListTile(
             title: Text('Home'),
             onTap: () {
-              Navigator.pushNamed(context, "home");
-              // Navigator.pushReplacementNamed(context, "home");
-              // Update the state of the app.
-              // ...
+              Navigator.pop(context);
+              Navigator.pushNamedAndRemoveUntil(
+                  context, "home", ModalRoute.withName('home'));
             },
           ),
           ListTile(
             title: Text('About'),
             onTap: () {
-              // Navigator.pushReplacementNamed(context, "about");
+              Navigator.pop(context);
               Navigator.pushNamed(context, "about");
-              // Update the state of the app.
-              // ...
             },
           ),
           ListTile(
@@ -50,23 +47,32 @@ class AppDrawer extends StatelessWidget {
               ),
               child: Image.asset('assets/images/cmdp.png', fit: BoxFit.cover),
             ),
+            onTap: () {},
+          ),
+          ListTile(
+            title: Text('Animate'),
+            leading: ConstrainedBox(
+              constraints: BoxConstraints(
+                minWidth: 20,
+                minHeight: 20,
+                maxWidth: 30,
+                maxHeight: 30,
+              ),
+              child: Image.asset('assets/images/cmdp.png', fit: BoxFit.cover),
+            ),
             onTap: () {
-              // Update the state of the app.
-              // ...
+              Navigator.pop(context);
+              Navigator.pushNamed(context, "animate");
             },
           ),
           ListTile(
             title: Text('Logout'),
             onTap: () async {
+              Navigator.pop(context);
               await storage.delete(key: "jwt");
-              // await storage.write(key: "jwt", value: null);
-              Navigator.pushNamed(context, 'login',
-                  arguments: "I am Passed from Login");
-
-              // Add your onPressed code here!
+              Navigator.pushNamedAndRemoveUntil(
+                  context, "login", ModalRoute.withName('login'));
             },
-            // Update the state of the app.
-            // ...
           ),
         ],
       ),
